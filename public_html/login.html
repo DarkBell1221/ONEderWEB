@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Fondo negro */
+            color: white; /* Texto blanco */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Botón para abrir el modal */
+        .login-btn {
+            background-color: #9B4DCC; /* Morado brillante */
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .login-btn:hover {
+            background-color: #6A2D9E; /* Morado más oscuro al pasar el mouse */
+        }
+
+        /* Modal - Ventana emergente */
+        .modal {
+            display: none; /* Oculto inicialmente */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro transparente */
+        }
+
+        .modal-content {
+            background-color: #2E004F;
+            color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #1A0033; /* Fondo oscuro para campos */
+            color: white;
+            font-size: 16px;
+        }
+
+        input:focus {
+            border: 2px solid #E0B1FF; /* Borde morado claro */
+            outline: none;
+        }
+
+        .submit-btn {
+            background-color: #9B4DCC;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #6A2D9E;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botón para abrir el modal -->
+    <button class="login-btn" onclick="openModal()">Iniciar Sesión</button>
+
+    <!-- Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm" method="POST" action="/login" onsubmit="return validateForm()">
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <button type="submit" class="submit-btn">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Función para abrir el modal
+        function openModal() {
+            document.getElementById("loginModal").style.display = "block";
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            document.getElementById("loginModal").style.display = "none";
+        }
+
+        // Validar formulario antes de enviar
+        function validateForm() {
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+            if (!email || !password) {
+                alert('Por favor, completa todos los campos');
+                return false;  // Evita el envío si falta algún campo
+            }
+            return true;  // Envía el formulario si todo es válido
+        }
+
+        // Cerrar el modal si el usuario hace clic fuera del contenido
+        window.onclick = function(event) {
+            var modal = document.getElementById("loginModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Permite cerrar el modal presionando 'Esc'
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>

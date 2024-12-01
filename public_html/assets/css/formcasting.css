@@ -1,0 +1,108 @@
+
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Fondo negro */
+            color: white; /* Texto blanco */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Contenedor del formulario */
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #2E004F; /* Morado oscuro */
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Títulos y etiquetas */
+        h1 {
+            color: #E0B1FF; /* Morado claro */
+            text-align: center;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1A0033; /* Fondo oscuro para campos */
+            color: white;
+            font-size: 14px;
+        }
+
+        input[type="url"]:focus, input[type="email"]:focus, input[type="text"]:focus, textarea:focus {
+            border: 2px solid #E0B1FF; /* Bordes morados cuando se selecciona el campo */
+            outline: none;
+        }
+
+        .hola {
+            background-color: #9B4DCC; /* Morado brillante */
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .hola:hover {
+            background-color: #6A2D9E; /* Morado más oscuro al pasar el mouse */
+        }
+
+        /* Modal - Ventana emergente */
+        .modal {
+            display: none; /* Inicialmente oculto */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5); /* Fondo oscuro */
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #2E004F;
+            color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Agregar espacio entre los elementos del formulario */
+        .form-container input, .form-container textarea, .form-container button {
+            margin-bottom: 15px;
+        }
+
+    

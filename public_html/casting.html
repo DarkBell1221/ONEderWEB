@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Postulación</title>
+    <link rel="stylesheet" href="assets/css/formcasting.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>Postula a nuestro casting</h1>
+        <form method="POST" action="/submit-casting" onsubmit="showModal(event)">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="email">Correo:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="description">Descripción breve:</label>
+            <textarea id="description" name="description" rows="4" required></textarea><br>
+
+            <label for="youtube_link">Enlace de YouTube:</label>
+            <input type="url" id="youtube_link" name="youtube_link" required><br>
+
+            <button class="hola" type="submit">Enviar postulación</button>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>¡Gracias por tu postulación!</h2>
+            <p>Tu postulación ha sido enviada correctamente.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar el modal
+        function showModal(event) {
+            event.preventDefault();  // Evitar que el formulario se envíe antes
+            var modal = document.getElementById("myModal");
+            var form = event.target;
+
+            // Mostrar el modal
+            modal.style.display = "block";
+
+            // Cerrar el modal cuando se hace clic en el "X"
+            var span = document.getElementsByClassName("close")[0];
+            span.onclick = function() {
+                modal.style.display = "none";
+                form.submit();  // Enviar el formulario después de cerrar el modal
+            }
+
+            // Cerrar el modal si el usuario hace clic fuera del modal
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    form.submit();  // Enviar el formulario si se hace clic fuera del modal
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
