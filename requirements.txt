@@ -1,13 +1,11 @@
-flask-cors
-Flask==2.3.3  # Versión compatible con tu proyecto
-Flask-MySQLdb==0.2.0  # Para conexión con MySQL
-Flask-Mail==0.9.1  # Para manejo de correos electrónicos
-Flask-SocketIO==5.3.5  # Para comunicación en tiempo real con WebSockets
-Flask-Cors==3.0.10  # Para manejar CORS (si es necesario)
-python-dotenv==1.0.0  # Para manejar variables de entorno en .env
-Werkzeug==2.3.3  # Manejo de seguridad de contraseñas
-eventlet==0.33.3  # Soporte para WebSockets en Flask-SocketIO
-gevent==22.10.2  # Alternativa a eventlet para WebSockets
-gevent-websocket==0.10.1  # Soporte de WebSocket para gevent
-gunicorn==21.2.0  # Para desplegar en producción (opcional)
-
+Flask==2.3.3
+Werkzeug>=2.3.7
+Flask-MySQLdb==0.2.0
+Flask-Mail==0.9.1
+Flask-SocketIO==5.3.5
+Flask-Cors==3.0.10
+python-dotenv==1.0.0
+eventlet==0.33.3
+gevent==22.10.2
+gevent-websocket==0.10.1
+gunicorn==21.2.0
