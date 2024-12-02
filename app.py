@@ -3,9 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
 from flask_socketio import SocketIO, emit
 from werkzeug.security import check_password_hash, generate_password_hash
-import os
 from flask_cors import CORS
 from dotenv import load_dotenv
+import os
 
 # Cargar las variables de entorno desde el archivo .env
 load_dotenv()
@@ -18,7 +18,9 @@ app = Flask(
 )
 
 # Configuración de la base de datos
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:MbeVKVhkqVhdFAiVuouloQWGmMXfGiTk@mysql.railway.internal:3306/railway'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
+    'DATABASE_URL', 'mysql://root:MbeVKVhkqVhdFAiVuouloQWGmMXfGiTk@mysql.railway.internal:3306/railway'
+)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializar SQLAlchemy
@@ -29,13 +31,13 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')  # Tu correo
-app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')  # Contraseña
-app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')  # Remitente
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')  # Correo de remitente
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')  # Contraseña del correo
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')  # Remitente predeterminado
 
 # Inicializar extensiones
 mail = Mail(app)
-socketio = SocketIO(app)  # Inicializar SocketIO
+socketio = SocketIO(app, cors_allowed_origins="*")  # Inicializar SocketIO
 CORS(app)  # Manejar solicitudes CORS si es necesario
 
 # Clave secreta para manejar sesiones
@@ -204,4 +206,5 @@ def submit_casting():
         return jsonify({"success": False, "message": "Error interno del servidor"}), 500
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    socketio.run(app, host='0.0.0.0', port=port, debug=True)
