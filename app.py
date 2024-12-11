@@ -19,7 +19,7 @@ app = Flask(
 
 # Configuración de la base de datos
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-    'DATABASE_URL', 'mysql://root:MbeVKVhkqVhdFAiVuouloQWGmMXfGiTk@mysql.railway.internal:3306/railway'
+    'DATABASE_URL', 'mysql://root:MbeVKVhkqVhdFAiVuouloQWGmMXfGiTk@autorack.proxy.rlwy.net:31170/railway'
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
